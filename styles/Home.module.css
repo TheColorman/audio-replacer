@@ -89,3 +89,9 @@
   @apply outline-4 outline-blue-300 focus-within:outline;
   @apply flex items-center justify-center;
 }
+
+.urlInput {
+  @apply bg-white p-2 rounded-lg;
+  @apply border-2 border-gray-300;
+  @apply focus-within:border-blue-300;
+}
