@@ -1,9 +1,19 @@
+import React from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import Popover from '@mui/material/Popover'
 
 const Home: NextPage = () => {
+  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null)
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget)
+  }
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+  const open = Boolean(anchorEl)
   return (
     <div className={styles.container}>
       <Head>
@@ -53,7 +63,30 @@ const Home: NextPage = () => {
                 placeholder=" Enter URL (e.g. https://youtu.be/...)"
               />
             </div>
-          <p className='absolute -bottom-4 left-1 text-xs text-blue-600 hover:underline hover:cursor-pointer'><a>Supported URLs</a></p>
+            <p className='absolute -bottom-4 left-1 text-xs text-blue-600 hover:underline hover:cursor-pointer'>
+              <a
+                aria-describedby='links-popover'
+                onClick={handleClick}
+              >Supported URLs</a>
+              <Popover
+                id='links-popover'
+                open={open}
+                anchorEl={anchorEl}
+                onClose={handleClose}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+              >
+                <div className="p-3 pb-0">
+                  <p className='text-base'>The following URLs are supported:</p>
+                  <p className={styles.code + " text-sm"}>
+                    youtu.be/ <br />
+                    youtube.com/
+                  </p>
+                </div>
+              </Popover>
+            </p>
           </div>
         </div>
       </main>

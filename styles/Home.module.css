@@ -45,7 +45,7 @@
 }
 
 .code {
-  @apply bg-[#fafafa] rounded-md p-3 text-[1.1rem];
+  @apply bg-[#fafafa] rounded-md p-3;
   @apply font-menlo;
 }
 
