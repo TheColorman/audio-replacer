@@ -18,8 +18,8 @@ const Home: NextPage = () => {
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
+          Add or replace audio on a video. <br />
+          Get started by uploading a video or inserting a link.
         </p>
 
         <div className={styles.grid}>
