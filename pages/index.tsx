@@ -5,35 +5,30 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Popover from '@mui/material/Popover'
 
+const Title = () => (
+  <>
+    <h1 className={styles.title}>
+      Audio Video Mixer
+    </h1>
+  </>
+)
+
 const Home: NextPage = () => {
-  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null)
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget)
-  }
-  const handleClose = () => {
-    setAnchorEl(null)
-  }
-  const open = Boolean(anchorEl)
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Video Audio Mixer</title>
-        <meta name="description" content="Easily replace or add sound on a video" />
-        <link rel="icon" href="/favicon_io/favicon.ico" />
-      </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Audio Video Mixer
-        </h1>
+  const StepOne = () => {
+    const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null)
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+      setAnchorEl(event.currentTarget)
+    }
+    const handleClose = () => {
+      setAnchorEl(null)
+    }
+    const open = Boolean(anchorEl)
 
-        <p className={styles.description}>
-          Add or replace audio on a video. <br />
-          Get started by uploading a video or inserting a link.
-        </p>
-
+    return (
+      <div className="flex flex-col">
         <div className="flex flex-row">
-          <div className={styles.uploadButton}>
+          <div className={styles.buttonPrimary}>
             <label htmlFor="upload-video" className='hover:cursor-pointer inline-flex'>
               <span className="mr-1">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -89,6 +84,35 @@ const Home: NextPage = () => {
             </p>
           </div>
         </div>
+        <div className="flex mt-6 w-full space-x-4">
+          <button className={`${styles.buttonSecondaryDisabled} w-full`}>
+            Back
+          </button>
+          <button className={`${styles.buttonPrimary} w-full`}>
+            Continue
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+
+  return (
+    <div className={styles.container}>
+      <Head>
+        <title>Video Audio Mixer</title>
+        <meta name="description" content="Easily replace or add sound on a video" />
+        <link rel="icon" href="/favicon_io/favicon.ico" />
+      </Head>
+
+      <main className={styles.main}>
+        <Title />
+        <p className={styles.description}>
+          Add or replace audio on a video. <br />
+          Get started by uploading a video or inserting a link.
+        </p>
+
+        <StepOne />
       </main>
 
       <footer className={styles.footer}>
