@@ -14,6 +14,43 @@ const Title = () => (
 )
 
 const Home: NextPage = () => {
+  const [activeStep, setActiveStep] = React.useState(0)
+  const handleNext = () => {
+    setActiveStep(prevActiveStep => prevActiveStep + 1)
+  }
+  const handleBack = () => {
+    setActiveStep(prevActiveStep => prevActiveStep - 1)
+  }
+
+  const Progress = () => {
+    return (
+      <div className='min-w-fit flex mt-8 items-center'>
+        {/* Image */}
+        <div className='bg-gray-500 w-48 aspect-video relative'>
+          <div className="w-full h-8 bg-black/80 bottom-0 absolute">
+            <p className="text-sm text-white p-1">
+              Video name
+            </p>
+          </div>
+        </div>
+        {/* Plus */}
+        <h1 className='text-8xl'>
+          +
+        </h1>
+        {/* Image */}
+        <div className='bg-gray-500 w-48 aspect-video relative'>
+          <div className="w-full h-8 bg-black/80 bottom-0 absolute">
+            <p className="text-sm text-white p-1">
+              Audio name
+            </p>
+          </div>
+        </div>
+
+        {/* Equals */}
+        {/* Image */}
+      </div>
+    )
+  }
 
   const StepOne = () => {
     const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null)
@@ -26,73 +63,169 @@ const Home: NextPage = () => {
     const open = Boolean(anchorEl)
 
     return (
-      <div className="flex flex-col">
-        <div className="flex flex-row">
-          <div className={styles.buttonPrimary}>
-            <label htmlFor="upload-video" className='hover:cursor-pointer inline-flex'>
-              <span className="mr-1">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                </svg>
-              </span>
-              Upload video
-            </label>
-            <input
-              // Hide the file input, but remain accessible to screen readers and keyboard users
-              className='absolute w-0 h-0'
-              id="upload-video"
-              type="file"
-              accept="video/*"
-            />
-          </div>
-          <div className='mx-2 flex items-center text-center'>
-            <p className='text-lg text-slate-500'>or</p>
-          </div>
-          {/* URL input */}
-          <div className='flex flex-col relative'>
-            <div className={styles.urlInput}>
+      <>
+        <p className={styles.description}>
+          Add or replace audio on a video. <br />
+          Get started by uploading a video or inserting a link.
+        </p>
+
+        <div className="flex flex-col">
+          <div className="flex flex-row">
+            <div className={styles.buttonPrimary}>
+              <label htmlFor="upload-video" className='hover:cursor-pointer inline-flex'>
+                <span className="mr-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                  </svg>
+                </span>
+                Upload video
+              </label>
               <input
-                className='focus:outline-none min-w-[20rem]'
-                id="url-input"
-                type="url"
-                placeholder=" Enter URL (e.g. https://youtu.be/...)"
+                // Hide the file input, but remain accessible to screen readers and keyboard users
+                className='absolute w-0 h-0'
+                id="upload-video"
+                type="file"
+                accept="video/*"
               />
             </div>
-            <p className='absolute -bottom-4 left-1 text-xs text-blue-600 hover:underline hover:cursor-pointer'>
-              <a
-                aria-describedby='links-popover'
-                onClick={handleClick}
-              >Supported URLs</a>
-              <Popover
-                id='links-popover'
-                open={open}
-                anchorEl={anchorEl}
-                onClose={handleClose}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'left',
-                }}
-              >
-                <div className="p-3 pb-0">
-                  <p className='text-base'>The following URLs are supported:</p>
-                  <p className={styles.code + " text-sm"}>
-                    youtu.be/ <br />
-                    youtube.com/
-                  </p>
-                </div>
-              </Popover>
-            </p>
+            <div className='mx-2 flex items-center text-center'>
+              <p className='text-lg text-slate-500'>or</p>
+            </div>
+            {/* URL input */}
+            <div className='flex flex-col relative'>
+              <div className={styles.urlInput}>
+                <input
+                  className='focus:outline-none min-w-[20rem]'
+                  id="url-input"
+                  type="url"
+                  placeholder=" Enter URL (e.g. https://youtu.be/...)"
+                />
+              </div>
+              <p className='absolute -bottom-4 left-1 text-xs text-blue-600 hover:underline hover:cursor-pointer'>
+                <a
+                  aria-describedby='links-popover'
+                  onClick={handleClick}
+                >Supported URLs</a>
+                <Popover
+                  id='links-popover'
+                  open={open}
+                  anchorEl={anchorEl}
+                  onClose={handleClose}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                >
+                  <div className="p-3 pb-0">
+                    <p className='text-base'>The following URLs are supported:</p>
+                    <p className={styles.code + " text-sm"}>
+                      youtu.be/ <br />
+                      youtube.com/
+                    </p>
+                  </div>
+                </Popover>
+              </p>
+            </div>
+          </div>
+          <div className="flex mt-6 w-full space-x-4">
+            <button className={`${styles.buttonSecondaryDisabled} w-full`}>
+              Back
+            </button>
+            <button className={`${styles.buttonPrimary} w-full`}>
+              Continue
+            </button>
           </div>
         </div>
-        <div className="flex mt-6 w-full space-x-4">
-          <button className={`${styles.buttonSecondaryDisabled} w-full`}>
-            Back
-          </button>
-          <button className={`${styles.buttonPrimary} w-full`}>
-            Continue
-          </button>
+
+        <Progress />
+      </>
+    )
+  }
+  const StepTwo = () => {
+    const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null)
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+      setAnchorEl(event.currentTarget)
+    }
+    const handleClose = () => {
+      setAnchorEl(null)
+    }
+    const open = Boolean(anchorEl)
+
+    return (
+      <>
+        <p className={styles.description}>
+          Upload a video, audio or insert a link. <br />
+          This will be used as the audio source.
+        </p>
+
+        <div className="flex flex-col">
+          <div className="flex flex-row">
+            <div className={styles.buttonPrimary}>
+              <label htmlFor="upload-video" className='hover:cursor-pointer inline-flex'>
+                <span className="mr-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                  </svg>
+                </span>
+                Upload video/audio
+              </label>
+              <input
+                // Hide the file input, but remain accessible to screen readers and keyboard users
+                className='absolute w-0 h-0'
+                id="upload-video"
+                type="file"
+                accept="video/*, audio/*"
+              />
+            </div>
+            <div className='mx-2 flex items-center text-center'>
+              <p className='text-lg text-slate-500'>or</p>
+            </div>
+            {/* URL input */}
+            <div className='flex flex-col relative'>
+              <div className={styles.urlInput}>
+                <input
+                  className='focus:outline-none min-w-[20rem]'
+                  id="url-input"
+                  type="url"
+                  placeholder=" Enter URL (e.g. https://youtu.be/...)"
+                />
+              </div>
+              <p className='absolute -bottom-4 left-1 text-xs text-blue-600 hover:underline hover:cursor-pointer'>
+                <a
+                  aria-describedby='links-popover'
+                  onClick={handleClick}
+                >Supported URLs</a>
+                <Popover
+                  id='links-popover'
+                  open={open}
+                  anchorEl={anchorEl}
+                  onClose={handleClose}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                >
+                  <div className="p-3 pb-0">
+                    <p className='text-base'>The following URLs are supported:</p>
+                    <p className={styles.code + " text-sm"}>
+                      youtu.be/ <br />
+                      youtube.com/
+                    </p>
+                  </div>
+                </Popover>
+              </p>
+            </div>
+          </div>
+          <div className="flex mt-6 w-full space-x-4">
+            <button className={`${styles.buttonSecondaryDisabled} w-full`}>
+              Back
+            </button>
+            <button className={`${styles.buttonPrimary} w-full`}>
+              Continue
+            </button>
+          </div>
         </div>
-      </div>
+      </>
     )
   }
 
@@ -107,11 +240,6 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <Title />
-        <p className={styles.description}>
-          Add or replace audio on a video. <br />
-          Get started by uploading a video or inserting a link.
-        </p>
-
         <StepOne />
       </main>
 
