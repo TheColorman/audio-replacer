@@ -7,6 +7,7 @@
   @apply p-16 px-0;
   @apply flex-1 flex flex-col;
   @apply justify-center items-center;
+  @apply -translate-y-[10%]
 }
 
 .footer {
