@@ -142,7 +142,7 @@ const Home: NextPage = () => {
             <button className={`${styles.buttonSecondaryDisabled} w-full`}>
               Back
             </button>
-            <button className={`${styles.buttonPrimary} w-full`}>
+            <button className={`${styles.buttonPrimary} w-full`} onClick={handleNext}>
               Continue
             </button>
           </div>
@@ -228,10 +228,10 @@ const Home: NextPage = () => {
             </div>
           </div>
           <div className="flex mt-6 w-full space-x-4">
-            <button className={`${styles.buttonSecondaryDisabled} w-full`}>
+            <button className={`${styles.buttonSecondary} w-full`} onClick={handleBack}>
               Back
             </button>
-            <button className={`${styles.buttonPrimary} w-full`}>
+            <button className={`${styles.buttonPrimary} w-full`} onClick={handleNext}>
               Continue
             </button>
           </div>
