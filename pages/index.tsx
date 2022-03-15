@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -17,6 +17,9 @@ const Title = () => (
 
 const Home: NextPage = () => {
   const [activeStep, setActiveStep] = React.useState(0)
+  const [video, setVideo] = React.useState<File | null>(null)
+  const [audio, setAudio] = React.useState<File | null>(null)
+
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1)
   }
@@ -58,9 +61,18 @@ const Home: NextPage = () => {
             </p>
           </div>
         </div>
-
         {/* Equals */}
+        <h1 className='text-8xl'>
+          =
+        </h1>
         {/* Image */}
+        <div className='bg-gray-500 w-48 aspect-video relative'>
+          <div className="w-full h-8 bg-black/80 bottom-0 absolute">
+            <p className="text-sm text-white p-1">
+              Output video
+            </p>
+          </div>
+        </div>
       </div>
     )
   }
@@ -84,7 +96,10 @@ const Home: NextPage = () => {
 
         <div className="flex flex-col">
           <div className="flex flex-row">
-            <div className={styles.buttonPrimary}>
+            <div className={`${styles.buttonPrimary} relative`}>
+              <p className='absolute left-1/2 -translate-x-1/2 -top-5 text-sm text-black align-text-bottom w-screen'>
+                {video ? video.name : ''}
+              </p>
               <label htmlFor="upload-video" className='hover:cursor-pointer inline-flex'>
                 <span className="mr-1">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -99,6 +114,7 @@ const Home: NextPage = () => {
                 id="upload-video"
                 type="file"
                 accept="video/*"
+                onChange={uploadVideoToClient}
               />
             </div>
             <div className='mx-2 flex items-center text-center'>
