@@ -331,7 +331,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <Title />
-        <StepOne />
+        {steps[activeStep]}
       </main>
 
       <footer className={styles.footer}>
