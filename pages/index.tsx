@@ -5,6 +5,7 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Popover from '@mui/material/Popover'
 import LinearProgress from '@mui/material/LinearProgress'
+import NoSsr from '@mui/material/NoSsr'
 
 const Title = () => (
   <>
@@ -118,24 +119,26 @@ const Home: NextPage = () => {
                   aria-describedby='links-popover'
                   onClick={handleClick}
                 >Supported URLs</a>
-                <Popover
-                  id='links-popover'
-                  open={open}
-                  anchorEl={anchorEl}
-                  onClose={handleClose}
-                  anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                  }}
-                >
-                  <div className="p-3 pb-0">
-                    <p className='text-base'>The following URLs are supported:</p>
-                    <p className={styles.code + " text-sm"}>
-                      youtu.be/ <br />
-                      youtube.com/
-                    </p>
-                  </div>
-                </Popover>
+                <NoSsr>
+                  <Popover
+                    id='links-popover'
+                    open={open}
+                    anchorEl={anchorEl}
+                    onClose={handleClose}
+                    anchorOrigin={{
+                      vertical: 'bottom',
+                      horizontal: 'left',
+                    }}
+                  >
+                    <div className="p-3 pb-0">
+                      <p className='text-base'>The following URLs are supported:</p>
+                      <p className={styles.code + " text-sm"}>
+                        youtu.be/ <br />
+                        youtube.com/
+                      </p>
+                    </div>
+                  </Popover>
+                </NoSsr>
               </p>
             </div>
           </div>
@@ -207,24 +210,26 @@ const Home: NextPage = () => {
                   aria-describedby='links-popover'
                   onClick={handleClick}
                 >Supported URLs</a>
-                <Popover
-                  id='links-popover'
-                  open={open}
-                  anchorEl={anchorEl}
-                  onClose={handleClose}
-                  anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                  }}
-                >
-                  <div className="p-3 pb-0">
-                    <p className='text-base'>The following URLs are supported:</p>
-                    <p className={styles.code + " text-sm"}>
-                      youtu.be/ <br />
-                      youtube.com/
-                    </p>
-                  </div>
-                </Popover>
+                <NoSsr>
+                  <Popover
+                    id='links-popover'
+                    open={open}
+                    anchorEl={anchorEl}
+                    onClose={handleClose}
+                    anchorOrigin={{
+                      vertical: 'bottom',
+                      horizontal: 'left',
+                    }}
+                  >
+                    <div className="p-3 pb-0">
+                      <p className='text-base'>The following URLs are supported:</p>
+                      <p className={styles.code + " text-sm"}>
+                        youtu.be/ <br />
+                        youtube.com/
+                      </p>
+                    </div>
+                  </Popover>
+                </NoSsr>
               </p>
             </div>
           </div>
