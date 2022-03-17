@@ -45,7 +45,10 @@ const Home: NextPage = () => {
     if (videoURL === null || video === null) {
       return console.log("Can't test without a video")
     }
-    const ffmpeg = createFFmpeg({ log: true })
+    const ffmpeg = createFFmpeg({
+      corePath: '/ffmpeg/ffmpeg-core.js',
+      log: true
+    })
       console.log("Loading ffmpeg");
     await ffmpeg.load()
       console.log("Writing file");
