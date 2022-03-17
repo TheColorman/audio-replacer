@@ -54,7 +54,7 @@ const Home: NextPage = () => {
       console.log("Writing file");
     ffmpeg.FS('writeFile', 'test.mp4', await fetchFile(video))
       console.log("Transcoding");
-    ffmpeg.run('-i', 'test.mp4', 'output.mp4')
+    await ffmpeg.run('-i', 'test.mp4', 'output.mp4')
       console.log("Exporting video");
     const data = ffmpeg.FS('readFile', 'output.mp4')
     const url = URL.createObjectURL(new Blob([data.buffer], { type: 'video/mp4' }))
@@ -198,7 +198,7 @@ const Home: NextPage = () => {
               Continue
             </button>
           </div>
-          <button className={styles.buttonPrimary} onClick={ffmpegTest}>
+          <button className={`${styles.buttonPrimary} mt-4`} onClick={ffmpegTest}>
             Test
           </button>
         </div>
