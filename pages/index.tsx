@@ -53,7 +53,7 @@ const Home: NextPage = () => {
         <div className='bg-gray-500 w-48 aspect-video relative'>
           <div className="w-full h-8 bg-black/80 bottom-0 absolute">
             <p className="text-sm text-white p-1">
-              Video name
+              {video ? video.name : 'Video'}
             </p>
           </div>
         </div>
@@ -65,7 +65,7 @@ const Home: NextPage = () => {
         <div className='bg-gray-500 w-48 aspect-video relative'>
           <div className="w-full h-8 bg-black/80 bottom-0 absolute">
             <p className="text-sm text-white p-1">
-              Audio name
+              {audio ? audio.name : 'Audio'}
             </p>
           </div>
         </div>
