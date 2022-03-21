@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, useEffect } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -271,22 +271,43 @@ const Home: NextPage = () => {
     )
   }
   const StepThree = () => {
-    const [progress, setProgress] = React.useState(100)
+    const [progress, setProgress] = React.useState(0)
+    const [progressText, setProgressText] = React.useState<string[]>([])
+    const [outputURL, setOutputURL] = React.useState('')
 
-    React.useEffect(() => {
-      const timer = setInterval(() => {
-        setProgress((oldProgress) => {
-          if (oldProgress === 100) {
-            return 100
-          }
-          const diff = Math.random() * 10
-          return Math.min(oldProgress + diff, 100)
-        })
-      }, 500)
-
-      return () => {
-        clearInterval(timer)
+    const convertVideo = async () => {
+      if (video === null || audio === null) {
+        return "error"
       }
+      const ffmpeg = createFFmpeg({
+        corePath: '/ffmpeg/ffmpeg-core.js',
+        log: true,
+      })
+      setProgressText(progressText.concat(['Loading ffmpeg...']))
+      await ffmpeg.load()
+      ffmpeg.setProgress(({ ratio }) => {
+        setProgress(ratio * 100)
+      })
+      setProgressText(progressText.concat('Writing video input...'))
+      ffmpeg.FS('writeFile', 'video.mp4', await fetchFile(video))
+      setProgressText(progressText.concat('Writing audio input...'))
+      ffmpeg.FS('writeFile', 'audio.mp3', await fetchFile(audio))
+      setProgressText(progressText.concat('Transmuxing...'))
+      await ffmpeg.run('-i', 'video.mp4', '-i', 'audio.mp3', '-c:v', 'copy', '-map', '0:v:0', '-map', '1:a:0', 'output.mp4', '-shortest')
+      setProgressText(progressText.concat('Exporting video...'))
+      const data = ffmpeg.FS('readFile', 'output.mp4')
+      const url = URL.createObjectURL(new Blob([data.buffer], { type: 'video/mp4' }))
+
+      setOutputURL(url)
+      setProgressText(progressText.concat('Done!'))
+
+      setTimeout(() => {
+        ffmpeg.exit()
+      }, 1000)
+    }
+
+    useEffect(() => {
+      convertVideo()
     }, [])
 
     if (progress < 100) {
@@ -296,7 +317,14 @@ const Home: NextPage = () => {
             Creating your video...
           </p>
 
-          <div className='w-1/2'>
+          <div className='w-1/2 flex flex-col'>
+            <div className="text-lg">
+              {progressText.map((el, i) => (
+                <p key={i}>
+                  {el} <br />
+                </p>
+              ))}
+            </div>
             <NoSsr>
               <LinearProgress variant='determinate' value={progress} />
             </NoSsr>
