@@ -267,6 +267,7 @@ const Home: NextPage = () => {
             </button>
           </div>
         </div>
+        <Progress />
       </>
     )
   }
@@ -369,6 +370,7 @@ const Home: NextPage = () => {
             </button>
           </div>
         </div>
+        <Progress />
       </>
     )
   }
