@@ -1,7 +1,6 @@
 import React, { ChangeEvent, useEffect } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Popover from '@mui/material/Popover'
 import LinearProgress from '@mui/material/LinearProgress'
@@ -406,7 +405,7 @@ const Home: NextPage = () => {
         >
           Powered by{' '}
           <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+            h
           </span>
         </a>
       </footer>
