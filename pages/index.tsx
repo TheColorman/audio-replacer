@@ -41,33 +41,7 @@ const Home: NextPage = () => {
     }
   }
 
-  const ffmpegTest = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (videoURL === null || video === null) {
-      return console.log("Can't test without a video")
     }
-    const ffmpeg = createFFmpeg({
-      corePath: '/ffmpeg/ffmpeg-core.js',
-      log: true
-    })
-      console.log("Loading ffmpeg");
-    await ffmpeg.load()
-      console.log("Writing file");
-    ffmpeg.FS('writeFile', 'test.mp4', await fetchFile(video))
-      console.log("Transcoding");
-    await ffmpeg.run('-i', 'test.mp4', 'output.mp4')
-      console.log("Exporting video");
-    const data = ffmpeg.FS('readFile', 'output.mp4')
-    const url = URL.createObjectURL(new Blob([data.buffer], { type: 'video/mp4' }))
-
-    // Create a link element
-    const link = document.createElement('a')
-    // Set the link target to _blank and href to the url
-    link.setAttribute('target', '_blank')
-    link.setAttribute('href', url)
-    // Make link download
-    link.setAttribute('download', 'output.mp4')
-    // Click the link
-    link.click()
   }
 
   const Progress = () => {
@@ -198,9 +172,6 @@ const Home: NextPage = () => {
               Continue
             </button>
           </div>
-          <button className={`${styles.buttonPrimary} mt-4`} onClick={ffmpegTest}>
-            Test
-          </button>
         </div>
 
         <Progress />
