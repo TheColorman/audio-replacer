@@ -19,7 +19,6 @@ const Title = () => (
 const Home: NextPage = () => {
   const [activeStep, setActiveStep] = React.useState(0)
   const [video, setVideo] = React.useState<File | null>(null)
-  const [videoURL, setVideoURL] = React.useState<string | null>(null)
   const [audio, setAudio] = React.useState<File | null>(null)
 
   const handleNext = () => {
@@ -37,7 +36,6 @@ const Home: NextPage = () => {
       const i = e.target.files[0]
 
       setVideo(i)
-      setVideoURL(URL.createObjectURL(i))
     }
   }
 
