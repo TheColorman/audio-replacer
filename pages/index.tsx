@@ -200,6 +200,9 @@ const Home: NextPage = () => {
         <div className="flex flex-col">
           <div className="flex flex-row">
             <div className={styles.buttonPrimary}>
+              <p className="absolute left-1/2 -translate-x-1/2 -top-5 text-sm text-black align-text-bottom w-screen">
+                {audio ? audio.name : ''}
+              </p>
               <label htmlFor="upload-video" className='hover:cursor-pointer inline-flex'>
                 <span className="mr-1">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
