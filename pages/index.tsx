@@ -38,7 +38,11 @@ const Home: NextPage = () => {
       setVideo(i)
     }
   }
+  const uploadAudioToClient = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const i = e.target.files[0]
 
+      setAudio(i)
     }
   }
 
@@ -210,6 +214,7 @@ const Home: NextPage = () => {
                 id="upload-video"
                 type="file"
                 accept="video/*, audio/*"
+                onChange={uploadAudioToClient}
               />
             </div>
             <div className='mx-2 flex items-center text-center'>
