@@ -277,6 +277,8 @@ const Home: NextPage = () => {
     const [progress, setProgress] = React.useState(0)
     const [progressText, setProgressText] = React.useState<string[]>([])
     const [outputURL, setOutputURL] = React.useState('')
+    const [complete, setComplete] = React.useState(false)
+    const [timerComplete, setTimerComplete] = React.useState(false)
 
     const convertVideo = async () => {
       if (video === null || audio === null) {
@@ -289,7 +291,7 @@ const Home: NextPage = () => {
       setProgressText(progressText.concat(['Loading ffmpeg...']))
       await ffmpeg.load()
       ffmpeg.setProgress(({ ratio }) => {
-        setProgress(ratio * 100)
+        setProgress(ratio > 1 ? ratio : ratio * 100)
       })
       setProgressText(progressText.concat('Writing video input...'))
       ffmpeg.FS('writeFile', 'video.mp4', await fetchFile(video))
@@ -300,20 +302,24 @@ const Home: NextPage = () => {
       setProgressText(progressText.concat('Exporting video...'))
       const data = ffmpeg.FS('readFile', 'output.mp4')
       const url = URL.createObjectURL(new Blob([data.buffer], { type: 'video/mp4' }))
-
-      setOutputURL(url)
+      setProgress(100)
+      setComplete(true)
       setProgressText(progressText.concat('Done!'))
+      setOutputURL(url)
 
       setTimeout(() => {
+        setTimerComplete(true)
         ffmpeg.exit()
       }, 1000)
     }
 
     useEffect(() => {
-      convertVideo()
+      if (!complete) {
+        convertVideo()
+      }
     }, [])
 
-    if (progress < 100) {
+    if (!timerComplete) {
       return (
         <>
           <p className={styles.description}>
