@@ -48,38 +48,48 @@ const Home: NextPage = () => {
   const Progress = () => {
     return (
       <div className='min-w-fit flex mt-8 items-center'>
-        {/* Image */}
-        <div className='bg-gray-500 w-48 aspect-video relative'>
-          <div className="w-full h-8 bg-black/80 bottom-0 absolute">
-            <p className="text-sm text-white p-1">
-              {video ? video.name : 'Video'}
-            </p>
+        {/* Image (video) */}
+        {video && (
+          <div className='bg-gray-500 w-48 aspect-video relative'>
+            <div className="w-full h-8 bg-black/80 bottom-0 absolute">
+              <p className="text-sm text-white p-1">
+                {video.name}
+              </p>
+            </div>
           </div>
-        </div>
+        )}
         {/* Plus */}
-        <h1 className='text-8xl'>
-          +
-        </h1>
-        {/* Image */}
-        <div className='bg-gray-500 w-48 aspect-video relative'>
-          <div className="w-full h-8 bg-black/80 bottom-0 absolute">
-            <p className="text-sm text-white p-1">
-              {audio ? audio.name : 'Audio'}
-            </p>
-          </div>
-        </div>
+        {audio && (
+          <>
+            <h1 className='text-8xl'>
+              +
+            </h1>
+            {/* Image (audio) */}
+            <div className='bg-gray-500 w-48 aspect-video relative'>
+              <div className="w-full h-8 bg-black/80 bottom-0 absolute">
+                <p className="text-sm text-white p-1">
+                  {audio.name}
+                </p>
+              </div>
+            </div>
+          </>
+        )}
         {/* Equals */}
-        <h1 className='text-8xl'>
-          =
-        </h1>
-        {/* Image */}
-        <div className='bg-gray-500 w-48 aspect-video relative'>
-          <div className="w-full h-8 bg-black/80 bottom-0 absolute">
-            <p className="text-sm text-white p-1">
-              Output video
-            </p>
-          </div>
-        </div>
+        {video && audio && (
+          <>
+            <h1 className='text-8xl'>
+              =
+            </h1>
+            {/* Image (output) */}
+            <div className='bg-gray-500 w-48 aspect-video relative'>
+              <div className="w-full h-8 bg-black/80 bottom-0 absolute">
+                <p className="text-sm text-white p-1">
+                  Output video
+                </p>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     )
   }
