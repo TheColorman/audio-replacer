@@ -399,13 +399,13 @@ const Home: NextPage = () => {
 
       <footer className={styles.footer}>
         <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          href="https://colorman.me"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by Colorman{' '}
           <span className={styles.logo}>
-            h
+
           </span>
         </a>
       </footer>
