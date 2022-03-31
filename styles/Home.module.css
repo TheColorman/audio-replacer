@@ -43,7 +43,7 @@
 }
 
 .description {
-  @apply m-16 mx-0;
+  @apply m-8 mx-0;
   @apply leading-normal text-[1.5rem];
 }
 
