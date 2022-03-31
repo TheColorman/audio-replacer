@@ -181,9 +181,15 @@ const Home: NextPage = () => {
             <button className={`${styles.buttonSecondaryDisabled} w-full`}>
               Back
             </button>
-            <button className={`${styles.buttonPrimary} w-full`} onClick={handleNext}>
-              Continue
-            </button>
+            {video ? (
+              <button className={`${styles.buttonPrimary} w-full`} onClick={handleNext}>
+                Continue
+              </button>
+            ) : (
+              <button className={`${styles.buttonPrimaryDisabled} w-full`}>
+                Continue
+              </button>
+            )}
           </div>
         </div>
 
@@ -276,9 +282,15 @@ const Home: NextPage = () => {
             <button className={`${styles.buttonSecondary} w-full`} onClick={handleBack}>
               Back
             </button>
-            <button className={`${styles.buttonPrimary} w-full`} onClick={handleNext}>
-              Continue
-            </button>
+            {audio ? (
+              <button className={`${styles.buttonPrimary} w-full`} onClick={handleNext}>
+                Continue
+              </button>
+            ) : (
+              <button className={`${styles.buttonPrimaryDisabled} w-full`}>
+                Continue
+              </button>
+            )}
           </div>
         </div>
         <Progress />
