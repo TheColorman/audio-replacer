@@ -6,6 +6,7 @@ import Popover from '@mui/material/Popover'
 import LinearProgress from '@mui/material/LinearProgress'
 import NoSsr from '@mui/material/NoSsr'
 import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg'
+import { useRouter } from 'next/router'
 
 const Title = () => (
   <>
@@ -19,6 +20,7 @@ const Home: NextPage = () => {
   const [activeStep, setActiveStep] = React.useState(0)
   const [video, setVideo] = React.useState<File | null>(null)
   const [audio, setAudio] = React.useState<File | null>(null)
+  const router = useRouter()
 
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1)
@@ -26,8 +28,8 @@ const Home: NextPage = () => {
   const handleBack = () => {
     setActiveStep(prevActiveStep => prevActiveStep - 1)
   }
-  const handleReset = () => {
-    setActiveStep(0)
+  const handleReload = () => {
+    router.reload()
   }
 
   const uploadVideoToClient = (e: ChangeEvent<HTMLInputElement>) => {
@@ -383,7 +385,7 @@ const Home: NextPage = () => {
             </a>
           </div>
           <div className="flex mt-12 w-full">
-            <button className={`${styles.buttonPrimary} w-full`} onClick={handleReset}>
+            <button className={`${styles.buttonPrimary} w-full`} onClick={handleReload}>
               Create a new video
             </button>
           </div>
