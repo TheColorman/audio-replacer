@@ -359,7 +359,7 @@ const Home: NextPage = () => {
           Your video is ready!
         </p>
         <div className="flex flex-col items-center">
-          <div className="bg-gray-600 w-96 aspect-video relative">
+          <div className="bg-gray-600 w-80 aspect-video relative">
             <div className="w-full h-8 bg-black bottom-0 absolute">
               <p className="text-sm text-white p-1">
                 Video name
