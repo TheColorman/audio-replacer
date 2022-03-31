@@ -11,7 +11,9 @@
 }
 
 .footer {
+  @apply absolute bottom-0;
   @apply flex flex-1;
+  @apply w-screen;
   @apply p-8 px-0;
   @apply border-t-[1px] border-t-[#eaeaea];
   @apply justify-center items-center;
