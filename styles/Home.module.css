@@ -93,6 +93,14 @@
   @apply flex items-center justify-center;
 }
 
+.buttonPrimaryDisabled {
+  @apply bg-[#4494f3] text-white text-center text-sm py-2 px-4 rounded-lg border;
+  @apply cursor-not-allowed;
+  @apply outline-2 outline-blue-300 focus-within:outline;
+  @apply flex items-center justify-center;
+}
+
+
 .buttonSecondary {
   @apply text-[#0070f3] text-center text-sm py-2 px-4 rounded-lg border-2;
   @apply hover:bg-[#e9effe] hover:border-[#d2e3fc];
