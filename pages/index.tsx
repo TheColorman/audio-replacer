@@ -130,10 +130,12 @@ const Home: NextPage = () => {
             <div className='flex flex-col relative'>
               <div className={styles.urlInput}>
                 <input
-                  className='focus:outline-none min-w-[20rem]'
+                  className='focus:outline-none min-w-[20rem] cursor-not-allowed'
                   id="url-input"
                   type="url"
                   placeholder=" Enter URL (e.g. https://youtu.be/...)"
+                  disabled
+                  title="URLs are currently unavailable"
                 />
               </div>
               <p className='absolute -bottom-4 left-1 text-xs text-blue-600 hover:underline hover:cursor-pointer'>
@@ -228,10 +230,12 @@ const Home: NextPage = () => {
             <div className='flex flex-col relative'>
               <div className={styles.urlInput}>
                 <input
-                  className='focus:outline-none min-w-[20rem]'
+                  className='focus:outline-none min-w-[20rem] cursor-not-allowed'
                   id="url-input"
                   type="url"
                   placeholder=" Enter URL (e.g. https://youtu.be/...)"
+                  disabled
+                  title="URLs are currently unavailable"
                 />
               </div>
               <p className='absolute -bottom-4 left-1 text-xs text-blue-600 hover:underline hover:cursor-pointer'>
