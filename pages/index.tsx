@@ -29,7 +29,7 @@ const File = ({ fileName }: { fileName: string }) => (
       height={48}
     />
     <p className="text-sm font-mono">
-      {fileName.split(".").shift()?.substring(0, 25) + '...'}
+      {fileName.split(".").shift()!.length > 25 ? `${fileName.split(".").shift()!.slice(0, 25)}...` : fileName.split(".").shift()}
     </p>
   </div>
 )
