@@ -176,7 +176,7 @@ const Home: NextPage = () => {
                 Continue
               </button>
             ) : (
-              <button className={`${styles.buttonPrimaryDisabled} w-full`}>
+              <button className={`${styles.buttonPrimaryDisabled} w-full`} title='Please choose a video'>
                 Continue
               </button>
             )}
@@ -276,7 +276,7 @@ const Home: NextPage = () => {
                 Continue
               </button>
             ) : (
-              <button className={`${styles.buttonPrimaryDisabled} w-full`}>
+              <button className={`${styles.buttonPrimaryDisabled} w-full`} title='Please choose some audio'>
                 Continue
               </button>
             )}
