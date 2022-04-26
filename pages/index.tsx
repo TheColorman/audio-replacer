@@ -352,7 +352,7 @@ const Home: NextPage = () => {
       if (!complete) {
         convertVideo()
       }
-    })
+    }, [])
 
     if (!timerComplete) {
       return (
