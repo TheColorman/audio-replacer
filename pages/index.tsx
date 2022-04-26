@@ -310,7 +310,7 @@ const Home: NextPage = () => {
   }
   const StepThree = () => {
     const [progress, setProgress] = React.useState(0)
-    const [progressText, setProgressText] = React.useState<string[]>([])
+    const [progressText, setProgressText] = React.useState<string>("")
     const [outputURL, setOutputURL] = React.useState('')
     const [complete, setComplete] = React.useState(false)
     const [timerComplete, setTimerComplete] = React.useState(false)
@@ -323,24 +323,23 @@ const Home: NextPage = () => {
         corePath: '/ffmpeg/ffmpeg-core.js',
         log: true,
       })
-      setProgressText(progressText.concat(['Loading ffmpeg...']))
+      setProgressText('Loading ffmpeg...')
       await ffmpeg.load()
       ffmpeg.setProgress(({ ratio }) => {
         setProgress(ratio > 1 ? ratio : ratio * 100)
       })
-      setProgressText([...progressText, 'Writing video input...'])
+      setProgressText('Writing video input...')
       ffmpeg.FS('writeFile', 'video.mp4', await fetchFile(video))
-      setProgressText([...progressText, 'Writing audio input...'])
+      setProgressText('Writing audio input...')
       ffmpeg.FS('writeFile', 'audio.mp3', await fetchFile(audio))
-      setProgressText([...progressText, 'Transmuxing...'])
+      setProgressText('Transmuxing...')
       await ffmpeg.run('-i', 'video.mp4', '-i', 'audio.mp3', '-c:v', 'copy', '-map', '0:v:0', '-map', '1:a:0', '-shortest', '-fflags', '+shortest', '-max_interleave_delta', '100M', 'output.mp4')
-      setProgressText([...progressText, 'Exporting video...'])
+      setProgressText('Exporting video...')
       const data = ffmpeg.FS('readFile', 'output.mp4')
       const url = URL.createObjectURL(new Blob([data.buffer], { type: 'video/mp4' }))
-      setProgressText([...progressText, 'Taking screenshot...'])
       setProgress(100)
       setComplete(true)
-      setProgressText([...progressText, 'Done!'])
+      setProgressText('Done!')
       setOutputURL(url)
 
       setTimeout(() => {
@@ -364,11 +363,7 @@ const Home: NextPage = () => {
 
           <div className='w-1/2 flex flex-col'>
             <div className="text-lg">
-              {progressText.map((el, i) => (
-                <p key={i}>
-                  {el} <br />
-                </p>
-              ))}
+              {progressText}
             </div>
             <NoSsr>
               <LinearProgress variant='determinate' value={progress} />
