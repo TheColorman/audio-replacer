@@ -154,12 +154,13 @@ const Home: NextPage = () => {
                       horizontal: 'left',
                     }}
                   >
-                    <div className="p-3 pb-0">
+                    <div className="p-3 w-72">
                       <p className='text-base'>The following URLs are supported:</p>
                       <p className={styles.code + " text-sm"}>
                         youtu.be/ <br />
-                        youtube.com/
+                        youtube.com/ <br />
                       </p>
+                      <strong>NOTE: URLs are currently unavailable due to YouTube request policies.</strong>
                     </div>
                   </Popover>
                 </NoSsr>
