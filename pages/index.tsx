@@ -38,6 +38,8 @@ const Home: NextPage = () => {
   const [activeStep, setActiveStep] = React.useState(0)
   const [video, setVideo] = React.useState<File | null>(null)
   const [audio, setAudio] = React.useState<File | null>(null)
+  // const [videoDelay, setVideoDelay] = React.useState<string>("0")
+  // const [audioDelay, setAudioDelay] = React.useState<string>("0")
   const router = useRouter()
 
   const handleNext = () => {
@@ -49,6 +51,15 @@ const Home: NextPage = () => {
   const handleReload = () => {
     router.reload()
   }
+  //? When passing the value to "setVideoDelay" the input becomes unusable???
+  // const handleChangeVideoDelay = (event: ChangeEvent<HTMLInputElement>) => {
+  //   const value = event.target.value
+  //   console.log(value)
+  //   setVideoDelay(value)
+  // }
+  // const handleChangeAudioDelay = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setAudioDelay(event.target.value)
+  // }
 
   const uploadVideoToClient = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -167,7 +178,19 @@ const Home: NextPage = () => {
               </p>
             </div>
           </div>
-          <div className="flex mt-6 w-full space-x-4">
+          {/* Input value doesn't work when using setState for some reason */}
+          {/* <div className="mt-3 w-full flex justify-center">
+            Start video after
+            <input
+              type="number"
+              // pattern="[0-9]*"
+              placeholder='0.0'
+              className="w-12 border-2 rounded mx-2"
+              onChange={handleChangeVideoDelay}
+            />
+            seconds
+          </div> */}
+          <div className="flex mt-4 w-full space-x-4">
             <button className={`${styles.buttonSecondaryDisabled} w-full`}>
               Back
             </button>
