@@ -70,13 +70,7 @@ const Home: NextPage = () => {
       <div className='min-w-fit flex mt-8 items-center'>
         {/* Image (video) */}
         {video && (
-          <div className='bg-gray-500 w-48 aspect-video relative'>
-            <div className="w-full h-8 bg-black/80 bottom-0 absolute">
-              <p className="text-sm text-white p-1">
-                {video.name}
-              </p>
-            </div>
-          </div>
+          <File fileName={video.name} />
         )}
         {/* Plus */}
         {audio && (
@@ -85,29 +79,7 @@ const Home: NextPage = () => {
               +
             </h1>
             {/* Image (audio) */}
-            <div className='bg-gray-500 w-48 aspect-video relative'>
-              <div className="w-full h-8 bg-black/80 bottom-0 absolute">
-                <p className="text-sm text-white p-1">
-                  {audio.name}
-                </p>
-              </div>
-            </div>
-          </>
-        )}
-        {/* Equals */}
-        {video && audio && (
-          <>
-            <h1 className='text-8xl'>
-              =
-            </h1>
-            {/* Image (output) */}
-            <div className='bg-gray-500 w-48 aspect-video relative'>
-              <div className="w-full h-8 bg-black/80 bottom-0 absolute">
-                <p className="text-sm text-white p-1">
-                  Output video
-                </p>
-              </div>
-            </div>
+            <File fileName={audio.name} />
           </>
         )}
       </div>
