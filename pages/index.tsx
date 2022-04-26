@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useEffect } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Popover from '@mui/material/Popover'
 import LinearProgress from '@mui/material/LinearProgress'
@@ -14,6 +15,23 @@ const Title = () => (
       Audio Video Mixer
     </h1>
   </>
+)
+
+const File = ({ fileName }: { fileName: string }) => (
+  <div
+    className='rounded-lg border-2 border-gray-300 flex justify-around items-center p-2 hover:bg-black/5 text-center max-w-xs'
+    title={fileName}
+  >
+    <Image
+      src={`/icons/${fileName.split('.').pop()}.svg`}
+      alt='File icon'
+      width={48}
+      height={48}
+    />
+    <p className="text-sm font-mono">
+      {fileName.split(".").shift()?.substring(0, 25) + '...'}
+    </p>
+  </div>
 )
 
 const Home: NextPage = () => {
