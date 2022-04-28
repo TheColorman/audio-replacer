@@ -315,6 +315,7 @@ const Home: NextPage = () => {
     const [outputURL, setOutputURL] = React.useState('')
     const [complete, setComplete] = React.useState(false)
     const [timerComplete, setTimerComplete] = React.useState(false)
+    const [fileInfo, setFileInfo] = React.useState<{ size: number }>({ size: 0 })
 
     const convertVideo = async () => {
       if (video === null || audio === null) {
@@ -352,7 +353,9 @@ const Home: NextPage = () => {
       }
       setProgressText('Exporting video...')
       const data = ffmpeg.FS('readFile', 'output.mp4')
-      const url = URL.createObjectURL(new Blob([data.buffer], { type: 'video/mp4' }))
+      const blob = new Blob([data.buffer], { type: 'video/mp4' })
+      const url = URL.createObjectURL(blob)
+      setFileInfo({ size: blob.size })
       setProgress(100)
       setComplete(true)
       setProgressText('Done!')
@@ -369,6 +372,13 @@ const Home: NextPage = () => {
         convertVideo()
       }
     }, [])
+
+    const filesize = (bytes: number): string => {
+      const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
+      if (bytes === 0) return '0 Bytes'
+      const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)).toString(), 10)
+      return Math.round((bytes / Math.pow(1024, i) + Number.EPSILON) * 100) / 100 + ' ' + sizes[i]
+    }
 
     if (!timerComplete) {
       return (
@@ -418,7 +428,13 @@ const Home: NextPage = () => {
               Download video
             </a>
           </div>
-          <div className="flex mt-12 w-full">
+          {fileInfo.size > 0 && (
+            <p className="text-base">
+              Size:
+              {fileInfo.size ? ` ${filesize(fileInfo.size)}` : ''}
+            </p>
+          )}
+          <div className="flex mt-6 w-full">
             <button className={`${styles.buttonPrimary} w-full`} onClick={handleReload}>
               Create a new video
             </button>
