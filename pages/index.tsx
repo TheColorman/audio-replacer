@@ -130,7 +130,7 @@ const Home: NextPage = () => {
                 className='absolute w-0 h-0'
                 id="upload-video"
                 type="file"
-                accept="video/*"
+                accept="video/*, image/*"
                 onChange={uploadVideoToClient}
               />
             </div>
@@ -329,12 +329,27 @@ const Home: NextPage = () => {
       ffmpeg.setProgress(({ ratio }) => {
         setProgress(ratio > 1 ? ratio : ratio * 100)
       })
-      setProgressText('Writing video input...')
-      ffmpeg.FS('writeFile', 'video.mp4', await fetchFile(video))
-      setProgressText('Writing audio input...')
-      ffmpeg.FS('writeFile', 'audio.mp3', await fetchFile(audio))
-      setProgressText('Transmuxing...')
-      await ffmpeg.run('-i', 'video.mp4', '-i', 'audio.mp3', '-c:v', 'copy', '-map', '0:v:0', '-map', '1:a:0', '-shortest', '-fflags', '+shortest', '-max_interleave_delta', '100M', 'output.mp4')
+      console.count("FFMPEG RUNS")
+      console.log(video.type)
+      if (video.type.startsWith("video")) {
+        // For videos
+        setProgressText('Writing video input...')
+        ffmpeg.FS('writeFile', 'video.mp4', await fetchFile(video))
+        setProgressText('Writing audio input...')
+        ffmpeg.FS('writeFile', 'audio.mp3', await fetchFile(audio))
+        setProgressText('Transmuxing...')
+        await ffmpeg.run('-i', 'video.mp4', '-i', 'audio.mp3', '-c:v', 'copy', '-map', '0:v:0', '-map', '1:a:0', '-shortest', '-fflags', '+shortest', '-max_interleave_delta', '100M', 'output.mp4')
+      } else {
+        // For images
+        setProgressText('Writing image input...')
+        ffmpeg.FS('writeFile', 'image.jpg', await fetchFile(video))
+        setProgressText('Writing audio input...')
+        ffmpeg.FS('writeFile', 'audio.mp3', await fetchFile(audio))
+        setProgressText('Preparing audio...')
+        await ffmpeg.run('-i', 'audio.mp3', '-map', '0:a:0', 'audioCleaned.mp3')
+        setProgressText('Transmuxing...')
+        await ffmpeg.run('-loop', '1', '-i', 'image.jpg', '-i', 'audioCleaned.mp3', '-c:v', 'libx264', '-tune', 'stillimage', '-filter:v', 'fps=1', '-c:a', 'aac', '-b:a', '192k', '-shortest', '-movflags', '+faststart', 'output.mp4')
+      }
       setProgressText('Exporting video...')
       const data = ffmpeg.FS('readFile', 'output.mp4')
       const url = URL.createObjectURL(new Blob([data.buffer], { type: 'video/mp4' }))
