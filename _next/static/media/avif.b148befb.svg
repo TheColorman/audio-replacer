@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 28 28" style="enable-background:new 0 0 28 28;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#SVGID_00000047019888652110100060000006123037773196209026_);}
+	.st1{fill:#E9E9E0;}
+	.st2{fill:none;stroke:#C8BDB8;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st3{fill:#C8BDB8;stroke:#C8BDB8;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st4{fill:#D9D7CA;}
+	.st5{fill:#3288B3;}
+	.st6{fill:#FFFFFF;}
+	.st7{font-family:'Tahoma';}
+	.st8{font-size:5px;}
+</style>
+<g id="Guides">
+</g>
+<g id="Background">
+	<g>
+		<g>
+			<defs>
+				
+					<rect id="SVGID_1_" x="1.8" y="2.5" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -7.049 13.4824)" width="21.9" height="25.5"/>
+			</defs>
+			<clipPath id="SVGID_00000165204374864523762010000007935535423563165882_">
+				<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+			</clipPath>
+			<g style="clip-path:url(#SVGID_00000165204374864523762010000007935535423563165882_);">
+				<path class="st1" d="M20.8,24H7.2C6.5,24,6,23.5,6,22.8V5.2C6,4.5,6.5,4,7.2,4h13.7C21.5,4,22,4.5,22,5.2v17.7
+					C22,23.5,21.5,24,20.8,24z"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<rect x="8.8" y="8" class="st2" width="10.5" height="7.1"/>
+		<g>
+			<polygon class="st3" points="11.8,10.8 10,13.8 13.7,13.8 			"/>
+			<polygon class="st3" points="15.5,9.6 13,13.8 18.1,13.8 			"/>
+		</g>
+	</g>
+	<polyline class="st4" points="22,9 17,9 17,4 	"/>
+	<rect x="6" y="19" class="st5" width="16" height="5"/>
+	<text transform="matrix(1 0 0 1 8.7731 23.4121)" class="st6 st7 st8">AVIF</text>
+</g>
+</svg>
