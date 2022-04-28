@@ -115,8 +115,8 @@ const Home: NextPage = () => {
         </p>
 
         <div className="flex flex-col">
-          <div className="flex flex-row">
-            <div className='relative'>
+          <div className="flex flex-col items-center md:flex-row md:items-stretch">
+            <div className='relative w-full'>
               <label htmlFor="upload-video" className={`${styles.buttonPrimary} hover:cursor-pointer inline-flex h-full`}>
                 <span className="mr-1">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -190,7 +190,7 @@ const Home: NextPage = () => {
             />
             seconds
           </div> */}
-          <div className="flex mt-4 w-full space-x-4">
+          <div className="flex mt-6 w-full space-x-4">
             <button className={`${styles.buttonSecondaryDisabled} w-full`}>
               Back
             </button>
@@ -228,8 +228,8 @@ const Home: NextPage = () => {
         </p>
 
         <div className="flex flex-col">
-          <div className="flex flex-row">
-            <div className='relative'>
+          <div className="flex flex-col items-center md:flex-row md:items-stretch">
+            <div className='relative w-full'>
               <label htmlFor="upload-video" className={`${styles.buttonPrimary} hover:cursor-pointer inline-flex h-full`}>
                 <span className="mr-1">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -395,7 +395,7 @@ const Home: NextPage = () => {
             Creating your video...
           </p>
 
-          <div className='w-1/2 flex flex-col'>
+          <div className='w-11/12 md:w-1/2 flex flex-col'>
             <div className="text-lg">
               {progressText}
             </div>
@@ -412,7 +412,7 @@ const Home: NextPage = () => {
           Your video is ready!
         </p>
         <div className="flex flex-col items-center">
-          <video controls className='max-w-md'>
+          <video controls className='max-w-md max-h-48'>
             <source
               src={outputURL}
               type="video/mp4"

@@ -36,7 +36,7 @@
 }
 
 .title {
-  @apply m-0 leading-tight text-[4rem];
+  @apply m-0 leading-tight text-4xl md:text-[4rem];
 }
 
 .title,
@@ -46,7 +46,7 @@
 
 .description {
   @apply m-8 mx-0;
-  @apply leading-normal text-[1.5rem];
+  @apply leading-normal text-base md:text-[1.5rem];
 }
 
 .code {
