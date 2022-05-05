@@ -1,5 +1,5 @@
 // sw.js
-self.addEventListener("install", function () {
+self.addEventListener("install", () => {
   self.skipWaiting();
 });
 
@@ -7,14 +7,14 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(self.clients.claim());
 });
 
-self.addEventListener("fetch", function (event) {
+self.addEventListener("fetch", (event) => {
   if (event.request.cache === "only-if-cached" && event.request.mode !== "same-origin") {
     return;
   }
 
   event.respondWith(
     fetch(event.request)
-      .then(function (response) {
+      .then((response) => {
         // It seems like we only need to set the headers for index.html
         // If you want to be on the safe side, comment this out
         // if (!response.url.includes("index.html")) return response;
@@ -31,7 +31,7 @@ self.addEventListener("fetch", function (event) {
 
         return moddedResponse;
       })
-      .catch(function (e) {
+      .catch((e) => {
         console.error(e);
       })
   );

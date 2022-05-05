@@ -7,14 +7,13 @@ function MyApp({ Component, pageProps }: AppProps) {
     if ("serviceWorker" in navigator) {
       const registerWorker = () => {
         // Register service worker
-        navigator.serviceWorker.register("/sw.js").then(
-          (registration) => {
-            console.log("COOP/COEP Service Worker registered", registration.scope)
-            // If the registration is active, but it's not controlling the page
-            if (registration.active && !navigator.serviceWorker.controller) {
-              window.location.reload()
-            }
-          },
+        navigator.serviceWorker.register("/sw.js").then((registration) => {
+          console.log("COOP/COEP Service Worker registered", registration.scope)
+          // If the registration is active, but it's not controlling the page
+          if (registration.active && !navigator.serviceWorker.controller) {
+            window.location.reload()
+          }
+        },
           function (err) {
             console.log("COOP/COEP Service Worker failed to register", err)
           }
