@@ -346,7 +346,7 @@ const Home: NextPage = () => {
         setProgressText('Writing audio input...')
         ffmpeg.FS('writeFile', 'audio.mp3', await fetchFile(audio))
         setProgressText('Transmuxing...')
-        await ffmpeg.run('-i', 'video.mp4', '-i', 'audio.mp3', '-c:v', 'copy', '-map', '0:v:0', '-map', '1:a:0', '-shortest', '-fflags', '+shortest', '-max_interleave_delta', '100M', 'output.mp4')
+        await ffmpeg.run('-i', 'video.mp4', '-i', 'audio.mp3', '-c:v', 'libx264', '-map', '0:v:0', '-map', '1:a:0', '-shortest', '-fflags', '+shortest', '-max_interleave_delta', '100M', 'output.mp4')
       } else if (video.name.toLowerCase().endsWith('.gif')) {
         // For GIFs
         setProgressText('Writing image input...')
