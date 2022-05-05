@@ -348,6 +348,16 @@ const Home: NextPage = () => {
         ffmpeg.FS('writeFile', 'audio.mp3', await fetchFile(audio))
         setProgressText('Transmuxing...')
         await ffmpeg.run('-i', 'video.mp4', '-i', 'audio.mp3', '-c:v', 'copy', '-map', '0:v:0', '-map', '1:a:0', '-shortest', '-fflags', '+shortest', '-max_interleave_delta', '100M', 'output.mp4')
+      } else if (video.name.toLowerCase().endsWith('.gif')) {
+        // For GIFs
+        setProgressText('Writing image input...')
+        ffmpeg.FS('writeFile', 'image.jpg', await fetchFile(video))
+        setProgressText('Writing audio input...')
+        ffmpeg.FS('writeFile', 'audio.mp3', await fetchFile(audio))
+        setProgressText('Preparing audio...')
+        await ffmpeg.run('-i', 'audio.mp3', '-map', '0:a:0', 'audioCleaned.mp3')
+        setProgressText('Transmuxing...')
+        await ffmpeg.run('-ignore_loop', '0', '-i', 'image.jpg', '-i', 'audioCleaned.mp3', '-c:v', 'libx264', '-vf', 'pad=ceil(iw/2)*2:ceil(ih/2)*2', '-tune', 'stillimage', '-c:a', 'aac', '-b:a', '192k', '-shortest', '-movflags', '+faststart', 'output.mp4')
       } else {
         // For images
         setProgressText('Writing image input...')
@@ -357,7 +367,7 @@ const Home: NextPage = () => {
         setProgressText('Preparing audio...')
         await ffmpeg.run('-i', 'audio.mp3', '-map', '0:a:0', 'audioCleaned.mp3')
         setProgressText('Transmuxing...')
-        await ffmpeg.run('-loop', '1', '-i', 'image.jpg', '-i', 'audioCleaned.mp3', '-c:v', 'libx264', '-tune', 'stillimage', '-filter:v', 'fps=1', '-c:a', 'aac', '-b:a', '192k', '-shortest', '-movflags', '+faststart', 'output.mp4')
+        await ffmpeg.run('-loop', '1', '-i', 'image.jpg', '-i', 'audioCleaned.mp3', '-c:v', 'libx264', '-tune', 'stillimage', '-filter:v', 'fps=1, pad=ceil(iw/2)*2:ceil(ih/2)*2', '-c:a', 'aac', '-b:a', '192k', '-shortest', '-movflags', '+faststart', 'output.mp4')
       }
       setProgressText('Exporting video...')
       const data = ffmpeg.FS('readFile', 'output.mp4')
