@@ -331,10 +331,9 @@ const Home: NextPage = () => {
         const ratioString = Math.floor(ratio).toString()
         // Ratio logic:
         // if == 0: 10
-        // if 1 character: Multiply by 100
-        // if 2 characters: Multiply by 10
-        // if 3 characters: Take first 2 characters
-        const progress = ratioString.length === 1 ? ratio * 100 : ratioString.length === 2 ? ratio * 10 : parseInt(ratio.toString().substring(0, 2))
+        // if 1 character: Multiply by 10
+        // if 2 or more characters: Take first 2 characters
+        const progress = ratioString === "0" ? ratio * 100 : ratioString.length === 1  ? ratio * 10 : parseInt(ratio.toString().substring(0, 2))
         console.log(ratio, progress)
         setProgress(progress === 0 ? 10 : progress)
       })
